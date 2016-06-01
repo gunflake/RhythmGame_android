@@ -1,3 +1,4 @@
 # RhythmGame_android
 This is Android Mobile Game project
-Test
+Test git
+
