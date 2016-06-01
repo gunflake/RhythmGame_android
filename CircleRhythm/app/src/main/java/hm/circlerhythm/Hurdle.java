@@ -18,10 +18,12 @@ public class Hurdle extends GameObject {
 
 
 
-    public Hurdle(int x, int y, int r) {
-        circle_R = r-10;
+    public Hurdle(int x, int y, int circleSize, int hurdleSize) {
+        circle_R = circleSize-10;
         width = x;
         height = y;
+
+        objectSize = hurdleSize;
 
         dx = 10;
         dy = 10;
@@ -38,7 +40,7 @@ public class Hurdle extends GameObject {
         x1 = (int) (circle_R * Math.cos(rad));
         y1 = (int) (circle_R * Math.sin(rad));
 
-        circle_R = r+10;
+        circle_R = circleSize+10;
 
         deg = rand.nextInt(95)+40;
         rad = Math.toRadians(deg);
@@ -53,15 +55,6 @@ public class Hurdle extends GameObject {
 
     public void update() {
 
-//        deg++;
-//        if (deg % 30 == 0) {
-//            deg = rand.nextInt(360);
-//            rad = Math.toRadians(deg);
-//            x = (int) (circle_R * Math.cos(rad));
-//            y = (int) (circle_R * Math.sin(rad));
-//        }
-
-
         if (deg > 359)
             deg = 0;
 
@@ -73,10 +66,10 @@ public class Hurdle extends GameObject {
         paint.setStyle(Paint.Style.FILL);
 
 
-        canvas.drawCircle(x + width, y + height, 10, paint);
-        canvas.drawCircle(x1 + width, y1 + height, 10, paint);
-        canvas.drawCircle(x2 + width, y2 + height, 10, paint);
-        canvas.drawCircle(x3 + width, y3 + height, 10, paint);
+        canvas.drawCircle(x + width, y + height, objectSize, paint);
+        canvas.drawCircle(x1 + width, y1 + height, objectSize, paint);
+        canvas.drawCircle(x2 + width, y2 + height, objectSize, paint);
+        canvas.drawCircle(x3 + width, y3 + height, objectSize, paint);
     }
 
 

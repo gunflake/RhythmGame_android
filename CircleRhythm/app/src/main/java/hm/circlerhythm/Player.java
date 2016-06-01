@@ -12,32 +12,31 @@ public class Player extends GameObject {
     private double dya;
     private boolean up;
     private boolean playing = false;
-    private Animation animation = new Animation();
+    //private Animation animation = new Animation();
     private long startTime;
     private int circle_R;
     private double deg;
     private double rad;
 
 
-    private int r;
     private GamePanel gamePanel;
 
     private float yy = 0;
 
-    public Player(int x, int y, int r) {
+    public Player(int x, int y, int r, int playerSize) {
 
         circle_R = r + 10;
+        objectSize = playerSize;
 
         width = x;
         height = y;
 
-        this.r = 10; //player 크기
         score = 0;
 
         deg = 180;
 
-        dx = this.r;
-        dy = this.r;
+        dx = this.objectSize;
+        dy = this.objectSize;
 
         startTime = System.nanoTime();
     }
@@ -76,7 +75,7 @@ public class Player extends GameObject {
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.FILL);
 
-        canvas.drawCircle(x + width, y + height, r, paint);
+        canvas.drawCircle(x + width, y + height, objectSize, paint);
     }
 
     public void resetDeg0(){

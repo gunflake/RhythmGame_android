@@ -9,6 +9,8 @@ public abstract class GameObject {
     protected int x;
     protected int y;
 
+    protected int objectSize;
+
 
     protected int x1;
     protected int y1;

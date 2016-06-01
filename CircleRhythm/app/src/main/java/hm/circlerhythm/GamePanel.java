@@ -29,11 +29,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private boolean reset;
     private boolean newGameCreated;
     private int best = 0;
-
+    private int circleRadius;
     private Hurdle hurdle;
 
     private SoundMusic music;
-
+    private int objectSize;
     Context context;
 
     public GamePanel(Context context, int w, int h) {
@@ -42,6 +42,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         WIDTH = w;
         HEIGHT = h;
 
+        circleRadius = (WIDTH/2)-60;
+        objectSize = circleRadius/30;
 
         //add the callback to the surfaceholder to intercept events
         getHolder().addCallback(this);
@@ -49,9 +51,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         thread = new MainThread(getHolder(), this);
 
 
-//        music = new SoundMusic(context);
         this.context=context;
-        //make gamePanel focusable so it can handle events
         setFocusable(true);
     }
 
@@ -79,9 +79,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder holder) {
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.whitebg));
-        player = new Player(WIDTH / 2, HEIGHT / 2, 300);
+        player = new Player(WIDTH / 2, HEIGHT / 2, circleRadius, objectSize);
         circlePath = new CirclePath(WIDTH / 2, HEIGHT / 2);
-        hurdle = new Hurdle(WIDTH / 2, HEIGHT / 2, 300);
+        hurdle = new Hurdle(WIDTH / 2, HEIGHT / 2, circleRadius, objectSize);
 
 
         hurdleStartTime = System.nanoTime();
@@ -128,7 +128,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             //hurdle.update();
 
             if(player.getDeg()==180)
-                hurdle = new Hurdle(WIDTH / 2, HEIGHT / 2, 300);
+                hurdle = new Hurdle(WIDTH / 2, HEIGHT / 2, circleRadius, objectSize);
 
             if(player.getDeg()>359) {
                 player.resetDeg0();
@@ -190,7 +190,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         player.resetScore();
         player.setY(HEIGHT / 2);
 
-        hurdle = new Hurdle(WIDTH / 2, HEIGHT / 2, 300);
+        hurdle = new Hurdle(WIDTH / 2, HEIGHT / 2, circleRadius, objectSize);
         newGameCreated = true;
     }
 
